@@ -465,6 +465,7 @@ while [[ $# -ge 1 ]]; do
         ;;
         -developer)
         DEVELOPER_MODE=1
+        keypos=$keylen
         ;;
         -no-object)
         DEPLOY_OBJECT=0

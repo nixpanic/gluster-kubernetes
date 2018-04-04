@@ -2,7 +2,7 @@
 # vi: set ft=ruby :
 
 # kubespray checks for 1500Mb of free RAM
-MEMORY = 4196
+MEMORY = 5120
 DISKS = 3
 
 # All Vagrant configuration is done below. The "2" in Vagrant.configure

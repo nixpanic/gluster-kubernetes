@@ -74,8 +74,5 @@ cat << EOF > topology.json
 }
 EOF
 
-# if dm-thin-pool is not loaded yet, containers will fail to create LVs for the bricks
-modprobe dm-thin-pool
-
 ./gk-deploy --yes --verbose --single-node --no-object --deploy-gluster --cli=kubectl topology.json
 

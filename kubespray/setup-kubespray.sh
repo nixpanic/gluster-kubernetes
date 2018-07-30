@@ -17,6 +17,8 @@ yum -y install git ansible python-netaddr glusterfs-fuse
 yum -y install python-setuptools
 easy_install pip
 pip install 'jinja2 >= 2.9'
+# kubespray depends on ansible vault, needs a newer version of ansible (>2.4.1)
+pip install ansible-modules-hashivault
 
 # the default hostname from the kubespray repository is "node1"
 hostnamectl set-hostname node1
@@ -26,8 +28,8 @@ swapoff -a
 sed -i '/swap/d' /etc/fstab
 
 # the kubectl from CentOS is not recent enough
-mkdir $HOME/bin || true
-[ -x $HOME/bin/kubectl ] || curl -Lo $HOME/bin/kubectl https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl && chmod +x $HOME/bin/kubectl
+[ -x /usr/bin/kubectl ] || curl -Lo /usr/bin/kubectl https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl && chmod +x /usr/bin/kubectl
+kubectl version || exit 1
 
 # go run Kubespray
 git clone https://github.com/kubernetes-incubator/kubespray
